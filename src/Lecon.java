@@ -28,24 +28,6 @@ public class Lecon {
     // TODO: peut etre plus simple avec des printf et format()
     public static String horaire()
     {
-        /*StringBuilder stringBuilder = new StringBuilder();
-        for(int i = 0; i < PERIODE_DEBUT.length; ++i)
-        {
-            if(i == 0) {
-                stringBuilder.append(String.valueOf(EMPTY_CHAR).repeat(PADDING_HORAIRE));
-                for (int k = 0; k < JOURS_SEMAINE.length; ++k) {
-                    stringBuilder.append(LINE_CHAR + String.valueOf(EMPTY_CHAR) + JOURS_SEMAINE[k]);
-                    stringBuilder.append(String.valueOf(EMPTY_CHAR).repeat(COLUMN_WIDTH - 2 - JOURS_SEMAINE[k].length()));
-                }
-                stringBuilder.append(LINE_CHAR);
-            }
-            for(int j = 0; j < JOURS_SEMAINE.length; ++j)
-            {
-
-            }
-        }
-
-        return stringBuilder.toString();*/
         StringBuilder horaire = new StringBuilder();
 
         for(int i = 0; i < PERIODE_DEBUT.length; ++i)
