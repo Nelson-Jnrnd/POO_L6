@@ -28,11 +28,9 @@ public class Groupe {
                 + " (" + nombreEtudiants() + " etudiants)");
         return stringBuilder.toString();
     }
-
     public String nom(){
         return nom;
     }
-
     public int nombreEtudiants(){
         return groupe.length;
     }
