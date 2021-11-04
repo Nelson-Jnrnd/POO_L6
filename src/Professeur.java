@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 /**
  * Authors:     Alen Bijelic, Nelson Jeanrenaud
  * Date:        04.11.2021
@@ -8,6 +10,7 @@ public class Professeur extends Personne
 {
     private String abreviation;
 
+    private LinkedList<Lecon> leconsEnseignes;
     /**
      * Constructeur
      * @param nom Nom du professeur
@@ -18,6 +21,7 @@ public class Professeur extends Personne
     {
         super(nom, prenom);
         this.abreviation = abreviation;
+        this.leconsEnseignes = new LinkedList<>();
     }
 
     /**
