@@ -1,3 +1,5 @@
+import java.util.Collection;
+import java.util.LinkedList;
 import java.util.Random;
 
 public class Lecon {
@@ -26,7 +28,7 @@ public class Lecon {
     }
 
     // TODO: peut etre plus simple avec des printf et format()
-    public static String horaire()
+    private static String horaire()
     {
         StringBuilder horaire = new StringBuilder();
 
@@ -55,6 +57,7 @@ public class Lecon {
             horaire.append(String.format(String.format("\n%%%ds", PADDING_HORAIRE), PERIODE_DEBUT[i] + LINE_CHAR));
             // Affichage d'une ligne où seront écrites les leçons
             for(int j = 0; j < JOURS_SEMAINE.length; ++j){
+
                 // TODO: Changer la condition pour vérifier si un cours se déroule pendant cette horaire
                 if(i == 2 && j == 3 || i == 0 && j == 0){
                     // TODO: Changer les données de leconFormat pour afficher les vraies informations
@@ -86,7 +89,7 @@ public class Lecon {
     // TODO: enlever à la fin
     // sert juste pour tester localement
     public static void main(String[] args) {
-        String horaire = horaire();
-        System.out.println(horaire);
+        /*String horaire = horaire();
+        System.out.println(horaire);*/
     }
 }

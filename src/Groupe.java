@@ -38,4 +38,5 @@ public class Groupe {
         leconsSuivies = new LinkedList<>(); // TOOD  peut-être changer jsp
         leconsSuivies.addAll(Arrays.asList(lecons));
     }
+    
 }
