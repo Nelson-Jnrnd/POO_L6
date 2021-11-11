@@ -26,6 +26,7 @@ public class Groupe {
     public String horaire(){
         StringBuilder stringBuilder = new StringBuilder("-- Horaire du groupe " + nom
                 + " (" + nombreEtudiants() + " etudiants)");
+        stringBuilder.append(Lecon.horaire(leconsSuivies));
         return stringBuilder.toString();
     }
     public String nom(){

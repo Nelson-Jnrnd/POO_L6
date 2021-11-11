@@ -1,4 +1,3 @@
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -18,6 +17,7 @@ public class Lecon {
     private int jourSemaine;
     private int periodeDebut;
     private int duree;
+    private Professeur professeur;
 
     public Lecon(String matiere, String salle, int jourSemaine, int periodeDebut, int duree) {
         this.matiere = matiere;
@@ -27,8 +27,12 @@ public class Lecon {
         this.duree = duree;
     }
 
-    // TODO: peut etre plus simple avec des printf et format()
-    private static String horaire()
+    public Lecon(String matiere, String salle, int jourSemaine, int periodeDebut, int duree, Professeur professeur) {
+        this(matiere, salle, jourSemaine, periodeDebut, duree);
+        this.professeur = professeur;
+    }
+
+    public static String horaire(LinkedList<Lecon> lecons)
     {
         StringBuilder horaire = new StringBuilder();
 
@@ -57,14 +61,17 @@ public class Lecon {
             horaire.append(String.format(String.format("\n%%%ds", PADDING_HORAIRE), PERIODE_DEBUT[i] + LINE_CHAR));
             // Affichage d'une ligne où seront écrites les leçons
             for(int j = 0; j < JOURS_SEMAINE.length; ++j){
-
                 // TODO: Changer la condition pour vérifier si un cours se déroule pendant cette horaire
-                if(i == 2 && j == 3 || i == 0 && j == 0){
-                    // TODO: Changer les données de leconFormat pour afficher les vraies informations
-                    String leconFormat = String.format("%s   %s %s", "POO", "H02", "PDO");
-                    horaire.append(String.format(String.format("%%-%ds%c", COLUMN_WIDTH, LINE_CHAR), leconFormat));
+                boolean leconALieu = false;
+                for(Lecon lecon : lecons){
+                    if(lecon.periodeDebut == i && lecon.jourSemaine == j){
+                        String leconFormat = String.format("%s   %s %s", lecon.matiere, lecon.salle, lecon.professeur != null ? lecon.professeur.abreviation() : "");
+                        horaire.append(String.format(String.format("%%-%ds%c", COLUMN_WIDTH, LINE_CHAR), leconFormat));
+                        leconALieu = true;
+                        break;
+                    }
                 }
-                else{
+                if (!leconALieu){
                     horaire.append(emptyColumn);
                 }
             }
@@ -72,11 +79,16 @@ public class Lecon {
             horaire.append(emptyPadding);
             // Affichage d'une ligne complète
             for(int j = 0; j < JOURS_SEMAINE.length; ++j){
+                boolean leconALieu = false;
                 // TODO: modifier la condition pour vérifier si une leçon s'étend sur plusieurs périodes
-                if(i == 2 && j == 3){
-                    horaire.append(emptyColumn);
+                for(Lecon lecon : lecons){
+                    if(j == lecon.jourSemaine && i >= lecon.periodeDebut && i < lecon.periodeDebut + lecon.duree - 1){
+                        horaire.append(emptyColumn);
+                        leconALieu = true;
+                        break;
+                    }
                 }
-                else{
+                if(!leconALieu){
                     horaire.append(fullColumn);
                 }
             }
@@ -84,12 +96,5 @@ public class Lecon {
         }
 
         return horaire.toString();
-    }
-
-    // TODO: enlever à la fin
-    // sert juste pour tester localement
-    public static void main(String[] args) {
-        /*String horaire = horaire();
-        System.out.println(horaire);*/
     }
 }
