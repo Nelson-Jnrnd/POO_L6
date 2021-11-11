@@ -1,5 +1,4 @@
 import java.util.LinkedList;
-import java.util.Random;
 
 public class Lecon {
     private static final String[] JOURS_SEMAINE = {"Lun", "Mar", "Mer", "Jeu", "Ven"};
@@ -59,6 +58,7 @@ public class Lecon {
 
             // Ajout du padding avec l'horaire
             horaire.append(String.format(String.format("\n%%%ds", PADDING_HORAIRE), PERIODE_DEBUT[i] + LINE_CHAR));
+
             // Affichage d'une ligne où seront écrites les leçons
             for(int j = 0; j < JOURS_SEMAINE.length; ++j){
                 // TODO: Changer la condition pour vérifier si un cours se déroule pendant cette horaire
@@ -75,20 +75,22 @@ public class Lecon {
                     horaire.append(emptyColumn);
                 }
             }
+
             // Ajout du padding sans horaire
             horaire.append(emptyPadding);
+
             // Affichage d'une ligne complète
             for(int j = 0; j < JOURS_SEMAINE.length; ++j){
-                boolean leconALieu = false;
+                boolean leconSurPlusieursPeriode = false;
                 // TODO: modifier la condition pour vérifier si une leçon s'étend sur plusieurs périodes
                 for(Lecon lecon : lecons){
                     if(j == lecon.jourSemaine && i >= lecon.periodeDebut && i < lecon.periodeDebut + lecon.duree - 1){
                         horaire.append(emptyColumn);
-                        leconALieu = true;
+                        leconSurPlusieursPeriode = true;
                         break;
                     }
                 }
-                if(!leconALieu){
+                if(!leconSurPlusieursPeriode){
                     horaire.append(fullColumn);
                 }
             }
