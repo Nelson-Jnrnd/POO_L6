@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.LinkedList;
 
 /**
@@ -24,6 +25,10 @@ public class Professeur extends Personne
         this.leconsEnseignes = new LinkedList<>();
     }
 
+    public void addLecon(Lecon[] lecons){
+        leconsEnseignes.addAll(Arrays.asList(lecons));
+    }
+
     /**
      * Getter pour l'abreviation du professeur
      * @return String de l'abréviation du professeur
@@ -48,6 +53,6 @@ public class Professeur extends Personne
      */
     public String horaire()
     {
-        return "";
+        return "-- Horaire " + this + Lecon.horaire(leconsEnseignes);
     }
 }

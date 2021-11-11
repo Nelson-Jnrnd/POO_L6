@@ -18,7 +18,11 @@ public class Lecon {
     private int duree;
     private Professeur professeur;
 
-    public Lecon(String matiere, String salle, int jourSemaine, int periodeDebut, int duree) {
+    public Lecon(String matiere, String salle, int jourSemaine, int periodeDebut, int duree) throws RuntimeException {
+        if(periodeDebut + duree > PERIODE_DEBUT.length){
+            throw new RuntimeException("Le cours sort de l'affichage de l'horaire");
+        }
+
         this.matiere = matiere;
         this.salle = salle;
         this.jourSemaine = jourSemaine;
@@ -26,7 +30,7 @@ public class Lecon {
         this.duree = duree;
     }
 
-    public Lecon(String matiere, String salle, int jourSemaine, int periodeDebut, int duree, Professeur professeur) {
+    public Lecon(String matiere, String salle, int jourSemaine, int periodeDebut, int duree, Professeur professeur) throws RuntimeException {
         this(matiere, salle, jourSemaine, periodeDebut, duree);
         this.professeur = professeur;
     }
@@ -61,7 +65,6 @@ public class Lecon {
 
             // Affichage d'une ligne où seront écrites les leçons
             for(int j = 0; j < JOURS_SEMAINE.length; ++j){
-                // TODO: Changer la condition pour vérifier si un cours se déroule pendant cette horaire
                 boolean leconALieu = false;
                 for(Lecon lecon : lecons){
                     if(lecon.periodeDebut == i && lecon.jourSemaine == j){
@@ -82,7 +85,6 @@ public class Lecon {
             // Affichage d'une ligne complète
             for(int j = 0; j < JOURS_SEMAINE.length; ++j){
                 boolean leconSurPlusieursPeriode = false;
-                // TODO: modifier la condition pour vérifier si une leçon s'étend sur plusieurs périodes
                 for(Lecon lecon : lecons){
                     if(j == lecon.jourSemaine && i >= lecon.periodeDebut && i < lecon.periodeDebut + lecon.duree - 1){
                         horaire.append(emptyColumn);
@@ -94,7 +96,6 @@ public class Lecon {
                     horaire.append(fullColumn);
                 }
             }
-
         }
 
         return horaire.toString();

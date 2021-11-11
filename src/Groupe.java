@@ -24,10 +24,7 @@ public class Groupe {
         leconsSuivies = new LinkedList<>();
     }
     public String horaire(){
-        StringBuilder stringBuilder = new StringBuilder("-- Horaire du groupe " + nom
-                + " (" + nombreEtudiants() + " etudiants)");
-        stringBuilder.append(Lecon.horaire(leconsSuivies));
-        return stringBuilder.toString();
+        return "-- Horaire du groupe " + nom() + " (" + nombreEtudiants() + " etudiants)" + Lecon.horaire(leconsSuivies);
     }
     public String nom(){
         return nom;
